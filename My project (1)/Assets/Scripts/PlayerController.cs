@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
+        anim.SetBool("Jump", false);
     }
     // Update is called once per frame
     void Update()
@@ -37,18 +38,19 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             isGrounded = false;
+            anim.SetBool("Jump", true);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             
         }
-        if (direction.x != 0)
+        if (direction.x != 0 || direction.z != 0)
         {
-
+            anim.SetBool("Walk", true);
         }
-        if (direction.x == 0)
+        if (direction.x == 0 && direction.z == 0)
         {
-
+            anim.SetBool("Walk", false);
         }
     }
     void FixedUpdate()
