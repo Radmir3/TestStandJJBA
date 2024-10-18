@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dummy : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    PlayerController isHolding;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class Dummy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void dummy()
@@ -23,8 +24,14 @@ public class Dummy : MonoBehaviour
         Invoke("stopAttack", 0.5f);
     }
 
+    public void startbarrage()
+    {
+        anim.SetTrigger("Barrage");
+    }
+
     private void stopAttack()
     {
+        anim.SetBool("Barrage", false);
         anim.SetBool("attack", false);
     }
 }
